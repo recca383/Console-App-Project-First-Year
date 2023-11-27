@@ -30,9 +30,9 @@ class Program
             Console.WriteLine("1. Add Terms \n2. Identification Quiz \n3. Multiple Choice \n4. View Terms \n5. Exit");
             Console.Write("\nEnter the number beside your choice to continue: ");
             
-            byte response = Convert.ToByte(Console.ReadLine());
+            byte MenuInput = Convert.ToByte(Console.ReadLine());
             
-            switch (response)
+            switch (MenuInput)
             {
 
                 case 1:
@@ -269,8 +269,9 @@ class Program
         Console.CursorVisible = true;
             
 
-        Console.WriteLine("\n\n\tPress Enter to Start");
+        Console.WriteLine("\n\n\tPress Any Key to Continue...");
         Console.ReadKey();
 
     }
+    
 }      
