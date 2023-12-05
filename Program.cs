@@ -2,20 +2,39 @@ using Console_App_Project_First_Year;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.Design;
 using System.IO.Pipes;
+using System.Reflection.Metadata;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 class Program
 {
-        
+
     public static void Main()
     {
+    Interface:
+        ConsoleKeyInfo UI;
+        do
+        {
+            Console.Clear();
+            PrintInCenter("Enter to continue");
+            
+            UI = Console.ReadKey();
+        } while( (ConsoleModifiers.Alt != 0)&& (UI.Key != ConsoleKey.Enter));
+        goto Load;
+       
+        
+        /*{ goto Load; }
+        else goto Interface;*/
 
-       // LoadingScreen();
+        LoadingScreen();
+
+
 
         ConsoleKeyInfo exit;
         bool run = true;
+    Load:
         do
         {
+            
             //Start Menu
             //Loading Screen
             List<string> Terms = new List<string>();
@@ -27,12 +46,36 @@ class Program
         //Start Menu
         Start:
             Console.Clear();
-            Console.WriteLine("Welcome Fellow Student!!");
-            Console.WriteLine("1. Add Terms \n2. Identification Quiz \n3. Multiple Choice \n4. View Terms \n5. Exit");
-            Console.Write("\nEnter the number beside your choice to continue: ");
-            
-            byte MenuInput = Convert.ToByte(Console.ReadLine());
-            
+            PrintInCenterLine("Welcome Fellow Student!!");
+            PrintInCenterLine("1. Add Terms");
+            PrintInCenterLine("2. Identification Quiz");
+            PrintInCenterLine("3. Multiple Choice");
+            PrintInCenterLine("4. View Terms");
+            PrintInCenterLine("5. Exit");
+                     
+            PrintInCenter("\nEnter the number beside your choice to continue: ");
+
+
+            byte MenuInput = 0;
+
+            try
+            {
+                MenuInput = Convert.ToByte(Console.ReadLine());
+            }
+            catch (FormatException e)
+            {
+                Console.Clear();
+                Console.WriteLine("Invalid Input! Try Again \nPress Any Key To go back to Start");
+                Console.ReadKey(true);
+                goto Start;
+
+            }
+            catch (Exception e)
+            {
+
+            }
+
+
             switch (MenuInput)
             {
 
@@ -164,7 +207,9 @@ class Program
             repeat:
                 Console.Write("Input the number of Choices you want: ");
                 int numChoice;
+
                 bool inputChoice = int.TryParse(Console.ReadLine(), out numChoice);
+                
                 HashSet<int> currentDefinition = new HashSet<int>();
                 int totalQuestions = t.Length;
 
@@ -437,5 +482,24 @@ class Program
         Console.ReadKey();
 
     }
-    
+        static void PrintInCenterLine (string text)
+    {
+        int center = Console.WindowWidth / 2 - 20;
+        for (int i = 0; i < center; i++)
+        {
+            Console.Write(" ");
+        }
+        Console.Write(text);
+        Console.WriteLine();
+    }
+    static void PrintInCenter(string text)
+    {
+        int center = Console.WindowWidth/2 - 20;
+        for (int i = 0; i < center; i++)
+        {
+            Console.Write(" ");
+        }
+        Console.Write(text);
+        
+    }
 }      
