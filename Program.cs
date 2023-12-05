@@ -333,7 +333,7 @@ class Program
     static string Average(int points, int total)
     {
 
-        float averageScore = (points * 40)/total + 60;
+        float averageScore = (points * 50)/total + 50;
         string feedback = " ";
         // Display result
         Console.WriteLine($"Your average score is {averageScore}%");
