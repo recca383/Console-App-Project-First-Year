@@ -1,4 +1,5 @@
-﻿using Console_App_Project_First_Year;
+using Console_App_Project_First_Year;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.Design;
 using System.IO.Pipes;
 using System.Security.Cryptography.X509Certificates;
@@ -9,7 +10,7 @@ class Program
     public static void Main()
     {
 
-        LoadingScreen();
+       // LoadingScreen();
 
         ConsoleKeyInfo exit;
         bool run = true;
@@ -20,8 +21,8 @@ class Program
             List<string> Terms = new List<string>();
             List<string> Definition = new List<string>();
             string[] t;
+            
 
-        
 
         //Start Menu
         Start:
@@ -40,7 +41,7 @@ class Program
                 case 2:
                     goto Identification;
                 case 3:
-                    break;
+                    goto Multiple_Choice;
                 case 4:
                     goto ViewTerms;
                 case 5:
@@ -50,7 +51,7 @@ class Program
         
         //Add Terms Module
         AddTerms:
-
+         
             do
             {
 
@@ -71,37 +72,198 @@ class Program
 
         //Identification Module
         Identification:
+            
+            if (Terms.Count == 0 || Definition.Count == 0 || Terms.Count != Definition.Count)
+            {
+                do
+                {
+                    Console.Clear();
+                    Console.WriteLine("Insufficient flashcards or mismatch between terms and definitions.");
+                    Console.WriteLine("Add flashcards first.");
+                    Console.WriteLine("Press Escape to go back to Start...");
+                    exit = Console.ReadKey();
+                } while (exit.Key != ConsoleKey.Escape);
+                goto Start;
+
+            }
+
             Console.Clear();
             t = Terms.ToArray();
+            
             do
             {
                 int points = 0;
-                int picker;
+                int totalQuestions = t.Length;
+                HashSet<int> askedQuestions = new HashSet<int>();
+
                 for (int question = 0; question <= t.Length-1; question++) {
                     
-
                     Console.Clear();
-                    Console.WriteLine($"Points: {points}/{t.Length}");
+                    Console.WriteLine($"Points: {points}/{t.Length}");                 
                     Random R = new Random();
-                    picker = R.Next(0,t.Length-1);
-                    Console.Write($"{question+1}. {Definition[picker]}: ");
                     
-                    string answer = Console.ReadLine().ToUpper();
+                    int picker;
+                    do
+                    {
+                        picker = R.Next(0, totalQuestions);
+                    } while (askedQuestions.Contains(picker));
+                    
+                    askedQuestions.Add(picker);
+                    
+                    Console.Write($"{question + 1}. {Definition[picker]}: ");                                        
+                    
+                    string UserAnswer = Console.ReadLine().ToUpper();
 
-                    if (answer == Terms[picker].ToUpper()) { 
+                    string Answer = Terms[picker];
+                    if (UserAnswer == Answer.ToUpper()) 
+                    { 
                         Console.WriteLine("Great!");
-                        points+=1;
-                    } Console.ReadKey();
+                        points++;
+                        Console.ReadKey();
+                    }
+                    else
+                    {                       
+                        Console.WriteLine($"Incorrect, Better luck next time.\nThe correct answer is: {Answer}");
+                        Console.ReadKey();                        
+                    }
                 }
                 Console.Clear();
-                Console.WriteLine(Average(points, t.Length));
+                Console.WriteLine($"Quiz completed! You scored {points} out of {Definition.Count}.\n");
+                Console.WriteLine("Average: {0} ", Average(points, Definition.Count));
                 Console.WriteLine("Press Escape to go back to Start...");
-
                 exit = Console.ReadKey();
             } while (exit.Key != ConsoleKey.Escape);
+            goto Start;
+
+        // Multiple Choice Module
+        Multiple_Choice:
+            Console.Clear();
+
+
+            if (Terms.Count == 0 || Definition.Count == 0 || Terms.Count != Definition.Count)
+            {
+                do
+                {
+                    Console.Clear();
+                    Console.WriteLine("Insufficient flashcards or mismatch between terms and definitions.");
+                    Console.WriteLine("Add flashcards first.");
+                    Console.WriteLine("Press Escape to go back to Start...");
+                    exit = Console.ReadKey();
+                } while (exit.Key != ConsoleKey.Escape);
+                goto Start;
+
+            }
+
+            Console.WriteLine("Quiz Time!");
+            int score = 0;
+            t = Terms.ToArray();
+            Random random = new Random();
+
+            do
+            {
+            repeat:
+                Console.Write("Input the number of Choices you want: ");
+                int numChoice;
+                bool inputChoice = int.TryParse(Console.ReadLine(), out numChoice);
+                HashSet<int> currentDefinition = new HashSet<int>();
+                int totalQuestions = t.Length;
+
+                if (inputChoice && numChoice >= 1 && numChoice <= (Terms.Count))
+
+
+                {
+                    for (int question = 0; question < Terms.Count; question++)
+                    {
+                        Console.Clear();
+                        int picker;
+                        do
+                        {
+                            picker = random.Next(0, totalQuestions);
+                        } while (currentDefinition.Contains(picker));
+
+                        List<string> options = new List<string>();
+                        string correctAnswer = Terms[picker];
+                        options.Add(correctAnswer);
+                                               
+                        currentDefinition.Add(picker);
+
+                        List<string> otherTerms = new List<string>(Terms);
+                        otherTerms.Remove(correctAnswer);
+                        Randomize(otherTerms);
+
+                        otherTerms = otherTerms.GetRange(0, Math.Min(numChoice - 1, otherTerms.Count)); // determines the number of choices
+
+                        options.AddRange(otherTerms);
+                        Randomize(options);
+
+                        Console.WriteLine($"{question + 1}. {Definition[picker]}\n");
+
+                        for (int j = 0; j < options.Count; j++)
+                        {
+
+                            Console.WriteLine($"{j + 1}. {options[j]}");
+                        }
+
+                        int Choice;
+                        Console.Write("Input the number of the answer: ");
+                        bool validInput = int.TryParse(Console.ReadLine(), out Choice);
+
+                        if (validInput && Choice >= 1 && Choice <= options.Count)
+                        {
+                            string userAnswer = options[Choice - 1];
+
+                            if (userAnswer == correctAnswer)
+                            {
+                                Console.WriteLine("Correct Answer!");
+                                score++;
+                                Console.ReadKey();
+                            }
+                            else
+                            {
+                                Console.WriteLine($"Incorrect, Better luck next time.\nThe correct answer is: {correctAnswer}");
+                                Console.ReadKey();
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid input. Moving to the next question.");
+                            Console.ReadKey();
+                        }
+                    }
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Invalid input.");
+                    goto repeat;
+                }
+
+                Console.Clear();
+                Console.WriteLine($"Quiz completed! You scored {score} out of {Definition.Count}.\n");
+                Console.WriteLine("Average: {0} ",Average(score, Definition.Count));
+                Console.WriteLine("Press Escape to go back to Start...");
+                exit = Console.ReadKey();
+            } while (exit.Key != ConsoleKey.Escape);
+            goto Start;
+
 
         //View Terms Module
         ViewTerms:
+
+            if (Terms.Count == 0 || Definition.Count == 0 || Terms.Count != Definition.Count)
+            {
+                do
+                {
+                    Console.Clear();
+                    Console.WriteLine("No flashcards have been inputed.");
+                    Console.WriteLine("Add flashcards first.");
+                    Console.WriteLine("Press Escape to go back to Start...");
+                    exit = Console.ReadKey();
+                } while (exit.Key != ConsoleKey.Escape);
+                goto Start;
+
+            }
+
             Console.Clear();
             Console.WriteLine("Press any key to go back...");
             t = Terms.ToArray();
@@ -126,10 +288,10 @@ class Program
     static string Average(int points, int total)
     {
 
-        float averageScore = ((float)points / total) * 100;
+        float averageScore = (points * 40)/total + 60;
         string feedback = " ";
         // Display result
-        Console.WriteLine($"Your average score is {averageScore * 100}%");
+        Console.WriteLine($"Your average score is {averageScore}%");
 
         switch (averageScore)
         {
@@ -149,20 +311,22 @@ class Program
         }
         return feedback;
     }
-    /*static string Responses(bool Correct) 
+  
+
+    static void Randomize<T>(List<T> list)
     {
-        string feedback = " ";
-
-        string[] GoodFeedback = {"Nice!!", "Good One" };
-        string[] BadFeedback = { "Try Again", "Awww... sad" };
-
-        Random rnd = new Random();
-
-        if (Correct)
-        return feedback; 
-    }*/
-
-    static void LoadingScreen() {
+        Random random = new Random();
+        int n = list.Count;
+        while (n > 1)
+        {
+            n--;
+            int k = random.Next(n + 1);
+            T value = list[k];
+            list[k] = list[n];
+            list[n] = value;
+        }
+    }
+        static void LoadingScreen() {
 
 
 
