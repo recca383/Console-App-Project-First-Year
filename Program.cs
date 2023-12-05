@@ -42,13 +42,17 @@ class Program
             List<string> Terms = new List<string>();
             List<string> Definition = new List<string>();
             string[] t;
-            
+
 
 
         //Start Menu
         Start:
             Console.Clear();
-            PrintInCenterLine("Welcome Fellow Student!!");
+            Console.WriteLine("Welcome!!");
+            PrintInCenterLine(@"
+╔════════════════════════════════╗
+║     Welcome Fellow Student!!   ║
+╚════════════════════════════════╝");
             PrintInCenterLine("1. Add Terms");
             PrintInCenterLine("2. Identification Quiz");
             PrintInCenterLine("3. Multiple Choice");
@@ -373,7 +377,7 @@ class Program
     static string Average(int points, int total)
     {
 
-        float averageScore = (points * 40)/total + 60;
+        float averageScore = (points * 50)/total + 50;
         string feedback = " ";
         // Display result
         Console.WriteLine($"Your average score is {averageScore}%");
@@ -524,7 +528,7 @@ class Program
     }
         static void PrintInCenterLine (string text)
     {
-        int center = Console.WindowWidth/2 - 31;
+        int center = Console.WindowWidth / 2 - 20;
         for (int i = 0; i < center; i++)
         {
             Console.Write(" ");
@@ -534,7 +538,7 @@ class Program
     }
     static void PrintInCenter(string text)
     {
-        int center = Console.WindowWidth/2 - 31;
+        int center = Console.WindowWidth/2 - 20;
         for (int i = 0; i < center; i++)
         {
             Console.Write(" ");
