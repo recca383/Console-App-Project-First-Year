@@ -10,7 +10,7 @@ class Program
 
     public static void Main()
     {
-    Interface:
+    /*Interface:
         ConsoleKeyInfo UI;
         do
         {
@@ -22,10 +22,10 @@ class Program
         goto Load;
        
         
-        /*{ goto Load; }
-        else goto Interface;*/
+        *//*{ goto Load; }
+        else goto Interface;*//*
 
-        LoadingScreen();
+        LoadingScreen();*/
 
 
 
@@ -40,13 +40,17 @@ class Program
             List<string> Terms = new List<string>();
             List<string> Definition = new List<string>();
             string[] t;
-            
+
 
 
         //Start Menu
         Start:
             Console.Clear();
-            PrintInCenterLine("Welcome Fellow Student!!");
+            Console.WriteLine("Welcome!!");
+            PrintInCenterLine(@"
+╔════════════════════════════════╗
+║     Welcome Fellow Student!!   ║
+╚════════════════════════════════╝");
             PrintInCenterLine("1. Add Terms");
             PrintInCenterLine("2. Identification Quiz");
             PrintInCenterLine("3. Multiple Choice");
@@ -102,6 +106,7 @@ class Program
                 Console.Write("Term: ");
                 string insertTerm = Console.ReadLine();
                 Terms.Add(insertTerm);
+
                 Console.Write("Definition: ");
                 string insertDefinition = Console.ReadLine();
                 Definition.Add(insertDefinition);
@@ -109,7 +114,7 @@ class Program
                 Console.WriteLine("Press Escape to go back to Main Menu");
                 exit = Console.ReadKey();
 
-            } while (exit.Key != ConsoleKey.Escape);
+            } while (exit.Key != ConsoleKey.Q);
             
             goto Start;
 
