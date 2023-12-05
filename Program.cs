@@ -25,18 +25,20 @@ class Program
         /*{ goto Load; }
         else goto Interface;*/
 
-        LoadingScreen();
+        
 
 
 
         ConsoleKeyInfo exit;
         bool run = true;
     Load:
+        Console.Clear();
+        LoadingScreen();
         do
         {
             
-            //Start Menu
-            //Loading Screen
+            
+            
             List<string> Terms = new List<string>();
             List<string> Definition = new List<string>();
             string[] t;
@@ -53,26 +55,34 @@ class Program
             PrintInCenterLine("4. View Terms");
             PrintInCenterLine("5. Exit");
                      
-            PrintInCenter("\nEnter the number beside your choice to continue: ");
+            PrintInCenter("Enter the number beside your choice to continue: ");
 
 
             byte MenuInput = 0;
 
             try
             {
+                
                 MenuInput = Convert.ToByte(Console.ReadLine());
+                if (!(MenuInput > 0 && MenuInput <= 5))
+                {
+                    PrintInCenter("Invalid input: refer to the choices above");
+                    Console.ReadKey();
+                    goto Start;
+                 }
+
             }
             catch (FormatException e)
             {
                 Console.Clear();
-                Console.WriteLine("Invalid Input! Try Again \nPress Any Key To go back to Start");
+                PrintInCenterLine("Invalid Input! Try Again \nPress Any Key To go back to Start");
                 Console.ReadKey(true);
                 goto Start;
 
             }
             catch (Exception e)
             {
-
+                PrintInCenterLine(e.Message); goto Start;
             }
 
 
@@ -99,12 +109,42 @@ class Program
             {
 
                 Console.Clear();
-                Console.Write("Term: ");
-                string insertTerm = Console.ReadLine();
-                Terms.Add(insertTerm);
-                Console.Write("Definition: ");
-                string insertDefinition = Console.ReadLine();
-                Definition.Add(insertDefinition);
+                
+
+                string insertTerm;
+                string insertDefinition;
+                do
+                {
+                    PrintInCenter ("Term: ");
+                    insertTerm = Console.ReadLine();
+
+                    if (string.IsNullOrEmpty(insertTerm)) 
+                    { 
+                        PrintInCenterLine("Invalid input: Don't Leave it Blank");
+                        Console.ReadKey();
+                    }
+                    else Terms.Add(insertTerm);
+                    Console.Clear();
+
+                } while (insertTerm == string.Empty);
+                
+                do
+                {
+
+                    PrintInCenter ("Definition: ");
+                    insertDefinition = Console.ReadLine();
+
+                    if (string.IsNullOrEmpty(insertDefinition)) 
+                    { 
+                        PrintInCenterLine("Invalid input: Don't Leave it Blank"); 
+                        Console.ReadKey();
+                    }
+                    else Definition.Add(insertDefinition);
+                    Console.Clear();
+
+                } while (insertDefinition == string.Empty);
+                
+
 
                 Console.WriteLine("Press Escape to go back to Main Menu");
                 exit = Console.ReadKey();
@@ -484,7 +524,7 @@ class Program
     }
         static void PrintInCenterLine (string text)
     {
-        int center = Console.WindowWidth / 2 - 20;
+        int center = Console.WindowWidth/2 - 31;
         for (int i = 0; i < center; i++)
         {
             Console.Write(" ");
@@ -494,7 +534,7 @@ class Program
     }
     static void PrintInCenter(string text)
     {
-        int center = Console.WindowWidth/2 - 20;
+        int center = Console.WindowWidth/2 - 31;
         for (int i = 0; i < center; i++)
         {
             Console.Write(" ");
