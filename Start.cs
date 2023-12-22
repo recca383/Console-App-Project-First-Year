@@ -87,6 +87,12 @@ namespace Console_App_Project_First_Year
                 case 2:
                     Library.LoadITEC101Preset();
                     break;
+                case 3:
+                    Library.LoadITEC102Preset();
+                    break;
+                case 4:
+                    Library.LoadPathfitPreset();
+                    break;
 
             }
         }
