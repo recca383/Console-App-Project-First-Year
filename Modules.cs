@@ -13,9 +13,6 @@ namespace Console_App_Project_First_Year
         public static void AddTerms()
         {
 
-            
-            do
-            {
 
                 Console.Clear();
 
@@ -55,10 +52,9 @@ namespace Console_App_Project_First_Year
 
 
 
-                Console.WriteLine("Press Escape to go back to Main Menu");
-                exit = Console.ReadKey();
+                Menu.AddMoreOrExit();
 
-            } while (exit.Key != ConsoleKey.Escape);
+            Program.Main();
         }
         public static void Identification() 
         {
@@ -223,9 +219,9 @@ namespace Console_App_Project_First_Year
             {
                 Console.Write($"{i + 1}. {Library.Terms[i]} - {Library.Definition[i]}\n");
             }
-
+           
             Console.ReadKey();
-
+            Start.Choice();
 
         }
     }

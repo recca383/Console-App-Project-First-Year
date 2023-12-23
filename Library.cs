@@ -96,6 +96,73 @@ namespace Console_App_Project_First_Year
             Terms.Add("Media Platforms");
             Definition.Add("Media publishing and analysis platform with technologies such as video transcoding, streaming and recognition.");     
         }
+
+        public static void LoadITEC102Preset()
+        {
+            Terms.Add("Computer Program");
+            Definition.Add("A program is a set of instructions following the rules of the chosen language.");
+
+            Terms.Add("Programming Language");
+            Definition.Add("A system of signs used by a person to communicate a task/algorithm to a computer, causing the task to be performed (Albacea, 2006)");
+
+            Terms.Add("Computer Programming");
+            Definition.Add("Computer programming is the process of writing, testing, debugging/troubleshooting, and maintaining the source code of computer programs.");
+
+            Terms.Add("Computer Programmer");
+            Definition.Add("A programmer is someone who writes computer program.");
+
+            Terms.Add("Machine Language");
+            Definition.Add("Low-Level language is the only language which can be understood by the computer.");
+
+            Terms.Add("Assembly Language");
+            Definition.Add("Middle-level language is a computer language in which the instructions are created using symbols such as letters, digits and special characters.");
+
+            Terms.Add("High Level Language");
+            Definition.Add("High-level language is a computer language which can be understood by the users");
+
+            Terms.Add("Critical Thinking");
+            Definition.Add("Using logic and analysis to identify the strengths and weaknesses of different approaches.");
+
+            Terms.Add("Written Comprehension ");
+            Definition.Add("The ability to read and understand information and ideas presented in writing.");
+
+            Terms.Add("Program Development");
+            Definition.Add("Creating application programs is referred to as");
+        }
+
+        public static void LoadPathfitPreset()
+        {
+            Terms.Add("EXERCISE");
+            Definition.Add("Any physical activity that enhances or maintains physical fitness and overall health.");
+
+            Terms.Add("MFIT");
+            Definition.Add("Stands for Mode or type of exercise, frequency, and time or in some references it’s also called FITT or frequency, intensity, time, and type.");
+
+            Terms.Add("HEALTH-RELATED COMPONENT OF PHYSICAL FITNESS");
+            Definition.Add("Refers to aspects of physical fitness that are associated with good health and reduced risk of chronic diseases.");
+
+            Terms.Add("BODY COMPOSITION");
+            Definition.Add("Refers to the proportion of fat, muscle, bone, and other tissues that make up a person's body.");
+
+            Terms.Add("CARDIORESPIRATORY ENDURANCE");
+            Definition.Add("It is a crucial component of overall physical fitness and is essential for performing activities that require a continuous supply of oxygen, such as running, swimming, cycling, and other aerobic exercises.");
+
+            Terms.Add("FLEXIBILITY");
+            Definition.Add("The ability of a joint or a series of joints to move through a full range of motion.");
+
+            Terms.Add("MUSCULAR ENDURANCE");
+            Definition.Add("The ability of a muscle or group of muscles to repeatedly exert force over an extended period. Muscular endurance is essential for activities that involve sustained muscle contractions, such as cycling and long-distance running.");
+
+            Terms.Add("MUSCULAR STRENGTH");
+            Definition.Add("The amount of force a muscle or group of muscles can exert against a resistance in a single effort.");
+
+            Terms.Add("SPECIFICITY");
+            Definition.Add("This principle emphasizes the need for tailoring exercise programs to achieve specific goals or improvements in particular fitness components or skills.");
+
+            Terms.Add("OVERLOAD");
+            Definition.Add("Involves progressively increasing the intensity, duration, or frequency of exercise to challenge the body and stimulate further improvements in fitness.");
+
+        }
     }
 
 }

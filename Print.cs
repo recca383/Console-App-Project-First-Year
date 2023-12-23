@@ -10,7 +10,7 @@ namespace Console_App_Project_First_Year
     {
         public static void InCenter(string text)
         {
-            int center = Console.LargestWindowWidth / 2 - 20;
+            int center = (Console.WindowWidth - text.Length) / 2;
             for (int i = 0; i < center; i++)
             {
                 Console.Write(" ");
@@ -21,7 +21,7 @@ namespace Console_App_Project_First_Year
 
         public static void InCenterLine(string text)
         {
-            int center = Console.LargestWindowWidth / 2 - 20;
+            int center = (Console.WindowWidth - text.Length) / 2;
             for (int i = 0; i < center; i++)
             {
                 Console.Write(" ");
