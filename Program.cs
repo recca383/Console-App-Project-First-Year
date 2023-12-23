@@ -11,17 +11,18 @@ public class Program
     public static void Main()
     {
         bool run = true;
+        //LoadingScreen.Animation();
 
         //Palagyan ulit dito nung parang laro na choices
         //yung nagkakahighlight ganun
-        Print.InCenter("New reviewer or Load Preset? : ");
+        Console.Write("New reviewer or Load Preset? : ");
+
         string response = Console.ReadLine();
 
-        if (response == "Load Preset")
+        if (response == "Load")
         {
             Start.LoadPreset();
         }
-        LoadingScreen.Animation();
 
         do {
             
