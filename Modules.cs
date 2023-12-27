@@ -52,7 +52,7 @@ namespace Console_App_Project_First_Year
 
 
 
-                Menu.AddMoreOrExit();
+                Menu.ContinueOrExitAddTerms();
 
             Program.Main();
         }
@@ -64,8 +64,6 @@ namespace Console_App_Project_First_Year
 
             t = Library.Terms.ToArray();
 
-            do
-            {
                 int points = 0;
                 int totalQuestions = t.Length;
                 HashSet<int> askedQuestions = new HashSet<int>();
@@ -105,14 +103,14 @@ namespace Console_App_Project_First_Year
                 Console.Clear();
                 Console.WriteLine($"Quiz completed! You scored {points} out of {Library.Definition.Count}.\n");
                 Console.WriteLine("Average: {0} ", Average.Base50(points, Library.Definition.Count));
-                Console.WriteLine("Press Escape to go back to Start...");
-                exit = Console.ReadKey();
-            } while (exit.Key != ConsoleKey.Escape);
+
+            Menu.ContinueOrExitIdentification();
+
         }
         public static void MultipleChoice()
         {
             Console.Clear();
-
+            Start.InefficientTerms();
             Console.WriteLine("Quiz Time!");
             int score = 0;
             t = Library.Terms.ToArray();
@@ -222,6 +220,11 @@ namespace Console_App_Project_First_Year
            
             Console.ReadKey();
             Start.Choice();
+
+        }
+
+        public static void ScoreBoard()
+        {
 
         }
     }

@@ -107,8 +107,7 @@ namespace Console_App_Project_First_Year
         {
             Console.ReadKey(true);
         }
-
-        public static void AddMoreOrExit()
+        public static int Indexer()
         {
             string[] Options = { "Continue", "Exit" };
             int selectedOption = 0;
@@ -165,8 +164,13 @@ namespace Console_App_Project_First_Year
                 }
 
             } while (keyInfo.Key != ConsoleKey.Enter);
+            return selectedOption;
 
-            switch (selectedOption)
+        }
+        public static void ContinueOrExitAddTerms()
+        {
+
+            switch (Indexer())
             {
                 case 0:
                     Console.CursorVisible = true;
@@ -177,6 +181,23 @@ namespace Console_App_Project_First_Year
                     Start.Choice();
                     break;
                 
+
+            }
+        }
+        public static void ContinueOrExitIdentification()
+        {
+
+            switch (Indexer())
+            {
+                case 0:
+                    Console.CursorVisible = true;
+                    Modules.Identification();
+                    break;
+                case 1:
+                    Console.CursorVisible = true;
+                    Start.Choice();
+                    break;
+
 
             }
         }

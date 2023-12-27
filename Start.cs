@@ -285,15 +285,14 @@ namespace Console_App_Project_First_Year
         {
             if (Library.Terms.Count == 0 || Library.Definition.Count == 0 || Library.Terms.Count != Library.Definition.Count)
             {
-                do
-                {
+
                     Console.Clear();
                     Console.WriteLine("Insufficient flashcards or mismatch between terms and definitions.");
                     Console.WriteLine("Add flashcards first.");
-                    Console.WriteLine("Press Escape to go back to Start...");
-                    exit = Console.ReadKey();
-                } while (exit.Key != ConsoleKey.Escape);
+                    Console.WriteLine("Press any key to go back...");
+                    Console.ReadKey(true);
 
+                    Choice();
 
             }
 
