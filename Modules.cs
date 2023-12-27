@@ -160,14 +160,14 @@ namespace Console_App_Project_First_Year
                         for (int j = 0; j < options.Count; j++)
                         {
 
-                            Console.WriteLine($"{j + 1}. {options[j]}");
+                            Console.WriteLine($"{Convert.ToChar(97 + j).ToString()}. {options[j]}");
                         }
 
                         int Choice;
-                        Console.Write("Input the number of the answer: ");
+                        Console.Write("Input the letter of the answer: ");
                         bool validInput = int.TryParse(Console.ReadLine(), out Choice);
 
-                        if (validInput && Choice >= 1 && Choice <= options.Count)
+                        if (validInput && Choice >= 1 && Choice <= 122)
                         {
                             string userAnswer = options[Choice - 1];
 
