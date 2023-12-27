@@ -89,7 +89,6 @@ namespace Console_App_Project_First_Year
             {
                 case 0:
                     Console.CursorVisible = true;
-                    Start.Menu();
                     Start.Choice();
                     break;
                 case 1:

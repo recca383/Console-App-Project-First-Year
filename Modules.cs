@@ -210,6 +210,7 @@ namespace Console_App_Project_First_Year
         {
 
             Console.Clear();
+            Start.InefficientTerms();
             Console.WriteLine("Press any key to go back...");
             t = Library.Terms.ToArray();
 
@@ -223,9 +224,5 @@ namespace Console_App_Project_First_Year
 
         }
 
-        public static void ScoreBoard()
-        {
-
-        }
     }
 }

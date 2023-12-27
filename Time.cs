@@ -1,20 +1,21 @@
 ﻿using System;
 using System.Timers;
+using System.Threading;
 
 class Time
 {
     private static int countdown = 30;
-    private static Timer timer;
+    private static System.Timers.Timer timer;
 
    public static void Timers()
     {
-        timer = new Timer(1000);
+        timer = new System.Timers.Timer(1000);
         timer.Elapsed += OnTimedEvent;
         timer.Enabled = true;  // Start the timer
 
         Console.WriteLine("Welcome! You have 30 seconds.");
 
-        System.Threading.Thread.Sleep(30000);
+        Thread.Sleep(30000);
 
         Console.WriteLine("Time's up!");
     }

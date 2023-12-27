@@ -15,5 +15,7 @@ namespace Console_App_Project_First_Year
             this.DateTime = DateTime;
             this.Score = Score;
         }
+
+
     }
 }
