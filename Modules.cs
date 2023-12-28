@@ -113,6 +113,7 @@ namespace Console_App_Project_First_Year
             Console.Clear();
             Console.CursorVisible = false;
             Start.InefficientTerms();
+            Start.InefficietTermsForMultipleChoice();
             Console.WriteLine("Quiz Time!");
             int score = 0;
             t = Library.Terms.ToArray();

@@ -222,6 +222,23 @@ namespace Console_App_Project_First_Year
             }
 
         }
+        public static void InefficietTermsForMultipleChoice()
+        {
+            if (Library.Terms.Count == 2 || Library.Definition.Count == 2 || Library.Terms.Count != Library.Definition.Count)
+            {
+
+                Console.Clear();
+                Console.WriteLine("Insufficient flashcards.");
+                Console.WriteLine("Flashcards must be atleast three.");
+                Console.WriteLine("Add flashcards first.");
+                Console.WriteLine("Press any key to go back...");
+                Console.ReadKey(true);
+
+                Choice();
+
+            }
+
+        }
         public static void Randomize<T>(List<T> list)
         {
             Random random = new Random();
