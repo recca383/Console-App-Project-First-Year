@@ -129,7 +129,7 @@ namespace Console_App_Project_First_Year
                 HashSet<int> currentDefinition = new HashSet<int>();
                 int totalQuestions = t.Length;
 
-                if (inputChoice && numChoice >= 1 && numChoice <= (Library.Terms.Count))
+                if (inputChoice && numChoice >= 3 && numChoice <= (Library.Terms.Count))
 
 
                 {
