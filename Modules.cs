@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.FileIO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -110,6 +111,7 @@ namespace Console_App_Project_First_Year
         public static void MultipleChoice()
         {
             Console.Clear();
+            Console.CursorVisible = false;
             Start.InefficientTerms();
             Console.WriteLine("Quiz Time!");
             int score = 0;
@@ -157,37 +159,68 @@ namespace Console_App_Project_First_Year
 
                         Console.WriteLine($"{question + 1}. {Library.Definition[picker]}\n");
 
-                        for (int j = 0; j < options.Count; j++)
+                        int selectedOption = 0;
+                        int currentTop = Console.CursorTop;
+
+                        ConsoleKeyInfo keyInfo;
+                        do
                         {
+                            Console.SetCursorPosition(0, currentTop);
 
-                            Console.WriteLine($"{Convert.ToChar(97 + j).ToString()}. {options[j]}");
-                        }
+                            for (int i = 0; i < options.Count; i++)
+                            {
+                                string currentOption = $"{Convert.ToChar(97 + i)}. {options[i]}";
+                                if (i == selectedOption)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Black;
+                                    Console.BackgroundColor = ConsoleColor.White;
+                                }
+                                else
+                                {
+                                    Console.ForegroundColor = ConsoleColor.White;
+                                    Console.BackgroundColor = ConsoleColor.Black;
+                                }
 
-                        int Choice;
-                        Console.Write("Input the letter of the answer: ");
-                        bool validInput = int.TryParse(Console.ReadLine(), out Choice);
+                                Console.WriteLine($"{currentOption}");
+                            }
+                            Console.ResetColor();
 
-                        if (validInput && Choice >= 1 && Choice <= 122)
+                            keyInfo = Console.ReadKey(true);
+
+                            if (keyInfo.Key == ConsoleKey.UpArrow)
+                            {
+                                selectedOption--;
+                                if (selectedOption < 0)
+                                {
+                                    selectedOption = options.Count - 1;
+                                }
+                            }
+                            else if (keyInfo.Key == ConsoleKey.DownArrow)
+                            {
+                                selectedOption++;
+                                if (selectedOption >= options.Count)
+                                {
+                                    selectedOption = 0;
+                                }
+                            }
+                        } while (keyInfo.Key != ConsoleKey.Enter);
+
+                        Console.WriteLine();
+
+                        int choiceIndex = selectedOption;
+                        string userAnswer = options[choiceIndex];
+
+                        if (userAnswer == correctAnswer)
                         {
-                            string userAnswer = options[Choice - 1];
-
-                            if (userAnswer == correctAnswer)
-                            {
-                                Console.WriteLine("Correct Answer!");
-                                score++;
-                                Console.ReadKey();
-                            }
-                            else
-                            {
-                                Console.WriteLine($"Incorrect, Better luck next time.\nThe correct answer is: {correctAnswer}");
-                                Console.ReadKey();
-                            }
+                            Console.WriteLine("Correct Answer!");
+                            score++;
                         }
                         else
                         {
-                            Console.WriteLine("Invalid input. Moving to the next question.");
-                            Console.ReadKey();
+                            Console.WriteLine($"Incorrect. The correct answer is: {correctAnswer}");
                         }
+
+                        Console.ReadKey();
                     }
                 }
                 else
