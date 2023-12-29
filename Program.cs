@@ -4,6 +4,8 @@ public class Program
 
     public static void Main()
     {
+        Console.Title = "SPEED REV U";
+        LoadingScreen.Animation();
         Menu.ChoosePreset();
     }
 

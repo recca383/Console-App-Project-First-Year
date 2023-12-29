@@ -49,7 +49,7 @@ namespace Console_App_Project_First_Year
                     }
                     else
                     {
-                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.ForegroundColor = ConsoleColor.DarkGray;
                         Console.WriteLine($"{option}");
                     }
                 }
@@ -83,24 +83,19 @@ namespace Console_App_Project_First_Year
             switch (selectedOption)
             {
                 case 0:
-                    Console.CursorVisible = true;
                     Modules.AddTerms();
                     break;
                 case 1:
-                    Console.CursorVisible = true;
                     Modules.Identification();
                     break;
                 case 2:
-                    Console.CursorVisible = true;
                     Modules.MultipleChoice();
                     break;
-                case 3:
-                    Console.CursorVisible = true;
+                case 3:;
                     Modules.ViewTerms();
                     break;
                 case 4:
-                    Console.CursorVisible = true;
-                    Program.Main();
+                    Menu.ChoosePreset();
                     break;
             }
         }
@@ -113,17 +108,18 @@ namespace Console_App_Project_First_Year
             do
             {
                 Console.Clear();
-
+                Console.ForegroundColor = ConsoleColor.DarkMagenta;
                 Console.WriteLine(@"
-                                    ██████╗ ██████╗ ███████╗███████╗███████╗████████╗███████╗
-                                    ██╔══██╗██╔══██╗██╔════╝██╔════╝██╔════╝╚══██╔══╝██╔════╝
-                                    ██████╔╝██████╔╝█████╗  ███████╗█████╗     ██║   ███████╗
-                                    ██╔═══╝ ██╔══██╗██╔══╝  ╚════██║██╔══╝     ██║   ╚════██║
-                                    ██║     ██║  ██║███████╗███████║███████╗   ██║   ███████║
-                                    ╚═╝     ╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝   ╚═╝   ╚══════╝
+
+                                ██████╗ ██████╗ ███████╗███████╗███████╗████████╗███████╗
+                                ██╔══██╗██╔══██╗██╔════╝██╔════╝██╔════╝╚══██╔══╝██╔════╝
+                                ██████╔╝██████╔╝█████╗  ███████╗█████╗     ██║   ███████╗
+                                ██╔═══╝ ██╔══██╗██╔══╝  ╚════██║██╔══╝     ██║   ╚════██║
+                                ██║     ██║  ██║███████╗███████║███████╗   ██║   ███████║
+                                ╚═╝     ╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝   ╚═╝   ╚══════╝
                                                          
 ");
-
+                Console.ResetColor();
                 string instruction = "Use arrow keys to navigate. Press Enter to select.";
                 int windowWidth = Console.WindowWidth;
                 int instructionPadding = (windowWidth - instruction.Length) / 2;
@@ -145,7 +141,7 @@ namespace Console_App_Project_First_Year
                     }
                     else
                     {
-                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.ForegroundColor = ConsoleColor.DarkGray;
                         Console.WriteLine($"{option}");
                     }
                 }
@@ -179,28 +175,23 @@ namespace Console_App_Project_First_Year
             switch (selectedOption)
             {
                 case 0:
-                    Console.CursorVisible = true;
                     Library.LoadKomfilPreset();
                     Choice();
                     break;
                 case 1:
-                    Console.CursorVisible = true;
                     Library.LoadITEC101Preset();
                     Choice();
                     break;
                 case 2:
-                    Console.CursorVisible = true;
                     Library.LoadITEC102Preset();
                     Choice();
                     break;
                 case 3:
-                    Console.CursorVisible = true;
                     Library.LoadPathfitPreset();
                     Choice();
                     break;
                 case 4:
-                    Console.CursorVisible = true;
-                    Program.Main();
+                    Menu.ChoosePreset();
                     break;
             }
 
@@ -235,12 +226,5 @@ namespace Console_App_Project_First_Year
                 list[n] = value;
             }
         }
-        public static void Exit() 
-        {
-            Console.Clear();
-            Console.WriteLine("Thank you for reviewing with me!!");
-            Console.ReadKey();
-        }
-
     }
 }

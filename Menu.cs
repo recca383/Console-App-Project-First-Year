@@ -20,6 +20,7 @@ namespace Console_App_Project_First_Year
             do
             {
                 Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine(@"
        
                 ███████╗██████╗ ███████╗███████╗ ██████╗      ██████╗  ███████╗ ██╗   ██╗     ██╗   ██╗
@@ -30,7 +31,7 @@ namespace Console_App_Project_First_Year
                 ╚══════╝╚═╝     ╚══════╝╚══════╝ ╚═════╝      ╚═╝  ╚═╝ ╚══════╝   ╚═══╝        ╚═════╝ 
 
 ");
-
+                Console.ResetColor();
                 // Center the instruction centered at the top
 
                 string instruction = "Use arrow keys to navigate. Press Enter to select.";
@@ -54,7 +55,7 @@ namespace Console_App_Project_First_Year
                     }
                     else
                     {
-                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.ForegroundColor = ConsoleColor.DarkGray;
                         Console.WriteLine($"{option}");
                     }
                 }
@@ -87,16 +88,13 @@ namespace Console_App_Project_First_Year
 
             switch (selectedOption)
             {
-                case 0:
-                    Console.CursorVisible = true;
+                case 0:                    
                     Start.Choice();
                     break;
                 case 1:
-                    Console.CursorVisible = true;
                     Start.LoadPreset();
                     break;
                 case 2:
-                    Console.CursorVisible = true;
                     ExitReviewer();
                     break;
             }
@@ -133,7 +131,7 @@ namespace Console_App_Project_First_Year
                     }
                     else
                     {
-                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.ForegroundColor = ConsoleColor.DarkGray;
                         Console.WriteLine($"{option}");
                     }
                 }
@@ -172,11 +170,9 @@ namespace Console_App_Project_First_Year
             switch (Indexer())
             {
                 case 0:
-                    Console.CursorVisible = true;
                     Modules.AddTerms();
                     break;
                 case 1:
-                    Console.CursorVisible = true;
                     Start.Choice();
                     break;
                 
@@ -189,11 +185,25 @@ namespace Console_App_Project_First_Year
             switch (Indexer())
             {
                 case 0:
-                    Console.CursorVisible = true;
                     Modules.Identification();
                     break;
                 case 1:
-                    Console.CursorVisible = true;
+                    Start.Choice();
+                    break;
+
+
+            }
+        }
+
+        public static void ContinueOrExitMultiChoice()
+        {
+
+            switch (Indexer())
+            {
+                case 0:
+                    Modules.MultipleChoice();
+                    break;
+                case 1:
                     Start.Choice();
                     break;
 
