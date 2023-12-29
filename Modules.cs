@@ -14,9 +14,7 @@ namespace Console_App_Project_First_Year
         public static void AddTerms()
         {
 
-
             Console.Clear();
-
 
             string insertTerm;
             string insertDefinition;
@@ -121,14 +119,14 @@ namespace Console_App_Project_First_Year
             Console.CursorVisible = true;
             Start.InefficientTerms();
             Start.InefficietTermsForMultipleChoice();
-            Console.WriteLine("Quiz Time!");
+            Print.InCenter("Quiz Time!");
             int score = 0;
             t = Library.Terms.ToArray();
             Random random = new Random();
 
         repeat:
             Console.WriteLine("\n═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\n");
-            Console.Write("Input the number of Choices you want: ");
+            Print.InCenter("Input the number of Choices you want: ");
             int numChoice;
             bool inputChoice = int.TryParse(Console.ReadLine(), out numChoice);
 

@@ -26,7 +26,7 @@ namespace Console_App_Project_First_Year
         {
 
 
-            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.CursorVisible = false;
             string[] frames = { @"
  

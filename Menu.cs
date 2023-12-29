@@ -20,7 +20,7 @@ namespace Console_App_Project_First_Year
             do
             {
                 Console.Clear();
-                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
                 Console.WriteLine(@"
        
                 ███████╗██████╗ ███████╗███████╗ ██████╗      ██████╗  ███████╗ ██╗   ██╗     ██╗   ██╗
