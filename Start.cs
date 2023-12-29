@@ -95,12 +95,9 @@ namespace Console_App_Project_First_Year
                     Modules.ViewTerms();
                     break;
                 case 4:
-                    Console.CursorVisible = true;
                     Modules.Scores();
                     break;
                 case 5:
-                    Console.CursorVisible = true;
-                    Program.Main();
                     Menu.ChoosePreset();
                     break;
             }

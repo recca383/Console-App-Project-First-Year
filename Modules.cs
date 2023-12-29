@@ -108,25 +108,10 @@ namespace Console_App_Project_First_Year
             Console.CursorVisible = false;
             Console.WriteLine($"Quiz completed! You scored {points} out of {Library.Definition.Count}.\n");
             Console.WriteLine("Average: {0} ", Average.Base50(points, Library.Definition.Count));
+            Scoreboard identification = new Scoreboard("Identification", DateTime.Now, points / Library.Definition.Count);
             Console.WriteLine("Press any key to continue *--->");
             Console.ReadKey(true);
-                    string Answer = Library.Terms[picker];
-                    if (UserAnswer == Answer.ToUpper())
-                    {
-                        Console.WriteLine("Great!");
-                        points++;
-                        Console.ReadKey();
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Incorrect, Better luck next time.\nThe correct answer is: {Answer}");
-                        Console.ReadKey();
-                    }
-                }
-                Console.Clear();
-                Console.WriteLine($"Quiz completed! You scored {points} out of {Library.Definition.Count}.\n");
-                Console.WriteLine("Average: {0} ", Average.Base50(points, Library.Definition.Count));
-                Scoreboard identification = new Scoreboard("Identification", DateTime.Now, points/Library.Definition.Count);
+
             Menu.ContinueOrExitIdentification();
 
         }
@@ -150,13 +135,8 @@ namespace Console_App_Project_First_Year
             HashSet<int> currentDefinition = new HashSet<int>();
             int totalQuestions = t.Length;
             Console.CursorVisible = false;
-            if (inputChoice && numChoice >= 1 && numChoice <= (Library.Terms.Count))
-                HashSet<int> currentDefinition = new HashSet<int>();
-                int totalQuestions = t.Length;
 
-                if (inputChoice && numChoice >= 3 && numChoice <= (Library.Terms.Count))
-
-
+            if (inputChoice && numChoice >= 3 && numChoice <= (Library.Terms.Count))
             {
                 for (int question = 0; question < Library.Terms.Count; question++)
                 {
