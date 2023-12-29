@@ -13,7 +13,7 @@ namespace Console_App_Project_First_Year
 
         public static void Choice ()
         {
-            string[] Options = { "Add Terms", "Identification Quiz", "Multiple Choice Quiz", "View Terms", "Exit" };
+            string[] Options = { "Add Terms", "Identification Quiz", "Multiple Choice Quiz", "View Terms", "Scoreboard", "Exit" };
             int selectedOption = 0;
             ConsoleKeyInfo keyInfo;
 
@@ -95,6 +95,12 @@ namespace Console_App_Project_First_Year
                     Modules.ViewTerms();
                     break;
                 case 4:
+                    Console.CursorVisible = true;
+                    Modules.Scores();
+                    break;
+                case 5:
+                    Console.CursorVisible = true;
+                    Program.Main();
                     Menu.ChoosePreset();
                     break;
             }
@@ -209,6 +215,23 @@ namespace Console_App_Project_First_Year
                     Console.ReadKey(true);
 
                     Choice();
+
+            }
+
+        }
+        public static void InefficietTermsForMultipleChoice()
+        {
+            if (Library.Terms.Count == 2 || Library.Definition.Count == 2 || Library.Terms.Count != Library.Definition.Count)
+            {
+
+                Console.Clear();
+                Console.WriteLine("Insufficient flashcards.");
+                Console.WriteLine("Flashcards must be atleast three.");
+                Console.WriteLine("Add flashcards first.");
+                Console.WriteLine("Press any key to go back...");
+                Console.ReadKey(true);
+
+                Choice();
 
             }
 
