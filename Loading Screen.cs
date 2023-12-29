@@ -16,7 +16,6 @@ namespace Console_App_Project_First_Year
                 foreach (string frame in frames)
                 {
                     Console.SetCursorPosition(0, 0);
-                    // Clear();
                     Console.Write(frame);
                     Thread.Sleep(delay);
                 }
