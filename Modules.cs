@@ -103,7 +103,7 @@ namespace Console_App_Project_First_Year
                 Console.Clear();
                 Console.WriteLine($"Quiz completed! You scored {points} out of {Library.Definition.Count}.\n");
                 Console.WriteLine("Average: {0} ", Average.Base50(points, Library.Definition.Count));
-
+                Scoreboard identification = new Scoreboard("Identification", DateTime.Now, points/Library.Definition.Count);
             Menu.ContinueOrExitIdentification();
 
         }
@@ -223,6 +223,9 @@ namespace Console_App_Project_First_Year
             Start.Choice();
 
         }
-
+        public static void Scores()
+        {
+            Scoreboard.DisplayScores();
+        }
     }
 }

@@ -13,7 +13,7 @@ namespace Console_App_Project_First_Year
 
         public static void Choice ()
         {
-            string[] Options = { "Add Terms", "Identification Quiz", "Multiple Choice Quiz", "View Terms", "Exit" };
+            string[] Options = { "Add Terms", "Identification Quiz", "Multiple Choice Quiz", "View Terms", "Scoreboard", "Exit" };
             int selectedOption = 0;
             ConsoleKeyInfo keyInfo;
 
@@ -99,6 +99,10 @@ namespace Console_App_Project_First_Year
                     Modules.ViewTerms();
                     break;
                 case 4:
+                    Console.CursorVisible = true;
+                    Modules.Scores();
+                    break;
+                case 5:
                     Console.CursorVisible = true;
                     Program.Main();
                     break;
