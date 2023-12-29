@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Console_App_Project_First_Year
 {
     internal class Modules
@@ -49,8 +50,6 @@ namespace Console_App_Project_First_Year
 
             } while (insertDefinition == string.Empty);
 
-
-
             Menu.ContinueOrExitAddTerms();
 
             Program.Main();
@@ -73,8 +72,21 @@ namespace Console_App_Project_First_Year
 
                 Console.Clear();
                 Console.WriteLine($"Points: {points}/{t.Length}");
-                Random R = new Random();
+                
+                // Time for each question
+                int timerDurationInSeconds = 30;
+                Console.WriteLine($"Time remaining: {timerDurationInSeconds} seconds");
 
+                // Create a timer with the specified duration
+                Timer timer = new Timer(state =>
+                {
+                    Console.WriteLine("Time's up!");
+                    
+                    Console.ReadKey();
+                }, null, timerDurationInSeconds * 1000, Timeout.Infinite);
+
+                Random R = new Random();
+              
                 int picker;
                 do
                 {
@@ -102,6 +114,7 @@ namespace Console_App_Project_First_Year
                     Console.ReadKey();
                 }
             }
+
             Console.Clear();
             Console.CursorVisible = false;
             Console.WriteLine($"Quiz completed! You scored {points} out of {Library.Definition.Count}.\n");
@@ -139,6 +152,19 @@ namespace Console_App_Project_First_Year
                 for (int question = 0; question < Library.Terms.Count; question++)
                 {
                     Console.Clear();
+
+                    // Time for each question
+                    int timerDurationInSeconds = 30;
+                    Console.WriteLine($"Time remaining: {timerDurationInSeconds} seconds");
+
+                    // Create a timer with the specified duration
+                    Timer timer = new Timer(state =>
+                    {
+                        Console.WriteLine("Time's up!");
+
+                        Console.ReadKey();
+                    }, null, timerDurationInSeconds * 1000, Timeout.Infinite);
+
                     int picker;
                     do
                     {
