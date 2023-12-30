@@ -63,58 +63,67 @@ namespace Console_App_Project_First_Year
 
             t = Library.Terms.ToArray();
 
+        repeat2:
+            Console.WriteLine("\n═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\n");
+            Print.InCenter("Input how many seconds [5 - 60]: ");
+            int TimerChoice;
+            bool inputTimer = int.TryParse(Console.ReadLine(), out TimerChoice);
+
             int points = 0;
             int totalQuestions = t.Length;
             HashSet<int> askedQuestions = new HashSet<int>();
-
-            for (int question = 0; question <= t.Length - 1; question++)
+            if (inputTimer && TimerChoice >= 5 && inputTimer && TimerChoice <= 60)
             {
-
-                Console.Clear();
-                Console.WriteLine($"Points: {points}/{t.Length}");
-                
-                // Time for each question
-                int timerDurationInSeconds = 30;
-                Console.WriteLine($"Time remaining: {timerDurationInSeconds} seconds");
-
-                // Create a timer with the specified duration
-                Timer timer = new Timer(state =>
+                for (int question = 0; question <= t.Length - 1; question++)
                 {
-                    Console.WriteLine("Time's up!");
-                    
-                    Console.ReadKey();
-                }, null, timerDurationInSeconds * 1000, Timeout.Infinite);
 
-                Random R = new Random();
-              
-                int picker;
-                do
-                {
-                    picker = R.Next(0, totalQuestions);
-                } while (askedQuestions.Contains(picker));
+                    Console.Clear();
+                    Print.InCenterLine($"You have {TimerChoice} seconds to answer the question");
 
-                askedQuestions.Add(picker);
+                    // Create a timer with the specified duration
+                    Timer timer = new Timer(state =>
+                    {
+                        Console.WriteLine("Time's up!");
 
-                Console.WriteLine($"{question + 1}. {Library.Definition[picker]}");
-                Console.WriteLine("\n═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\n");
-                Console.Write("Enter your answer here: ");
-                string UserAnswer = Console.ReadLine().ToUpper();
+                        Console.ReadKey(true);
+                    }, null, TimerChoice * 1000, Timeout.Infinite);
 
-                string Answer = Library.Terms[picker];
-                Console.WriteLine("\n═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\n");
-                if (UserAnswer == Answer.ToUpper())
-                {
-                    Console.WriteLine("Great!");
-                    points++;
-                    Console.ReadKey();
-                }
-                else
-                {
-                    Console.WriteLine($"Incorrect, Better luck next time.\nThe correct answer is: {Answer}");
-                    Console.ReadKey();
-                }
+                    Random R = new Random();
+
+                    int picker;
+                    do
+                    {
+                        picker = R.Next(0, totalQuestions);
+                    } while (askedQuestions.Contains(picker));
+
+                    askedQuestions.Add(picker);
+
+                    Console.WriteLine($"\n{question + 1}. {Library.Definition[picker]}");
+                    Console.WriteLine("\n═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\n");
+                    Console.Write("Enter your answer here: ");
+                    string UserAnswer = Console.ReadLine().ToUpper();
+
+                    string Answer = Library.Terms[picker];
+                    Console.WriteLine("\n═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\n");
+                    if (UserAnswer == Answer.ToUpper())
+                    {
+                        Console.WriteLine("Great!");
+                        points++;
+                        Console.ReadKey();
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Incorrect, Better luck next time.\nThe correct answer is: {Answer}");
+                        Console.ReadKey();
+                    }
+                }                
             }
-
+            else
+            {
+                Console.Clear();
+                Print.InCenterLine("Invalid input.");
+                goto repeat2;
+            }
             Console.Clear();
             Console.CursorVisible = false;
             Console.WriteLine($"Quiz completed! You scored {points} out of {Library.Definition.Count}.\n");
@@ -132,6 +141,7 @@ namespace Console_App_Project_First_Year
             Console.CursorVisible = true;
             Start.InefficientTerms();
             Start.InefficietTermsForMultipleChoice();
+            
             Print.InCenter("Quiz Time!");
             int score = 0;
             t = Library.Terms.ToArray();
@@ -142,120 +152,133 @@ namespace Console_App_Project_First_Year
             Print.InCenter("Input the number of Choices you want: ");
             int numChoice;
             bool inputChoice = int.TryParse(Console.ReadLine(), out numChoice);
-
+            Console.Clear();
+            Print.InCenter("Quiz Time!");
+        repeat2:
+            Console.WriteLine("\n═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\n");
+            Print.InCenter("Input how many seconds [5 - 60]: ");
+            int TimerChoice;
+            bool inputTimer = int.TryParse(Console.ReadLine(), out TimerChoice);
+          
             HashSet<int> currentDefinition = new HashSet<int>();
             int totalQuestions = t.Length;
             Console.CursorVisible = false;
 
             if (inputChoice && numChoice >= 3 && numChoice <= (Library.Terms.Count))
             {
-                for (int question = 0; question < Library.Terms.Count; question++)
+                if (inputTimer && TimerChoice >= 5 && inputTimer && TimerChoice <= 60)
                 {
-                    Console.Clear();
-
-                    // Time for each question
-                    int timerDurationInSeconds = 30;
-                    Console.WriteLine($"Time remaining: {timerDurationInSeconds} seconds");
-
-                    // Create a timer with the specified duration
-                    Timer timer = new Timer(state =>
+                    for (int question = 0; question < Library.Terms.Count; question++)
                     {
-                        Console.WriteLine("Time's up!");
+                        Console.Clear();
+                        Print.InCenterLine($"You have {TimerChoice} seconds to answer the question");
+
+                        // Create a timer with the specified duration
+                        Timer timer = new Timer(state =>
+                        {
+                            Console.WriteLine("Time's up!");
+
+                            Console.ReadKey(true);
+                        }, null, TimerChoice * 1000, Timeout.Infinite);
+
+                        int picker;
+                        do
+                        {
+                            picker = random.Next(0, totalQuestions);
+                        } while (currentDefinition.Contains(picker));
+
+                        List<string> options = new List<string>();
+                        string correctAnswer = Library.Terms[picker];
+                        options.Add(correctAnswer);
+
+                        currentDefinition.Add(picker);
+
+                        List<string> otherTerms = new List<string>(Library.Terms);
+                        otherTerms.Remove(correctAnswer);
+                        Start.Randomize(otherTerms);
+
+                        otherTerms = otherTerms.GetRange(0, Math.Min(numChoice - 1, otherTerms.Count)); // determines the number of choices
+
+                        options.AddRange(otherTerms);
+                        Start.Randomize(options);
+
+                        Console.WriteLine($"\n{question + 1}. {Library.Definition[picker]}");
+                        Console.WriteLine("\n═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\n");
+                        int selectedOption = 0;
+                        int currentTop = Console.CursorTop;
+
+                        ConsoleKeyInfo keyInfo;
+                        do
+                        {
+                            Console.SetCursorPosition(0, currentTop);
+
+                            for (int i = 0; i < options.Count; i++)
+                            {
+                                string currentOption = $"{Convert.ToChar(97 + i)}. {options[i]}";
+                                if (i == selectedOption)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Black;
+                                    Console.BackgroundColor = ConsoleColor.White;
+                                }
+                                else
+                                {
+                                    Console.ForegroundColor = ConsoleColor.White;
+                                    Console.BackgroundColor = ConsoleColor.Black;
+                                }
+
+                                Console.WriteLine($"{currentOption}");
+                            }
+                            Console.ResetColor();
+
+                            keyInfo = Console.ReadKey(true);
+
+                            if (keyInfo.Key == ConsoleKey.UpArrow)
+                            {
+                                selectedOption--;
+                                if (selectedOption < 0)
+                                {
+                                    selectedOption = options.Count - 1;
+                                }
+                            }
+                            else if (keyInfo.Key == ConsoleKey.DownArrow)
+                            {
+                                selectedOption++;
+                                if (selectedOption >= options.Count)
+                                {
+                                    selectedOption = 0;
+                                }
+                            }
+                        } while (keyInfo.Key != ConsoleKey.Enter);
+                        timer.Change(Timeout.Infinite, Timeout.Infinite);
+                        Console.WriteLine("\n═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\n");
+
+                        int choiceIndex = selectedOption;
+                        string userAnswer = options[choiceIndex];
+
+                        if (userAnswer == correctAnswer)
+                        {
+                            Console.WriteLine("Correct Answer!");
+                            score++;
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Incorrect. The correct answer is: {correctAnswer}");
+                        }
 
                         Console.ReadKey();
-                    }, null, timerDurationInSeconds * 1000, Timeout.Infinite);
-
-                    int picker;
-                    do
-                    {
-                        picker = random.Next(0, totalQuestions);
-                    } while (currentDefinition.Contains(picker));
-
-                    List<string> options = new List<string>();
-                    string correctAnswer = Library.Terms[picker];
-                    options.Add(correctAnswer);
-
-                    currentDefinition.Add(picker);
-
-                    List<string> otherTerms = new List<string>(Library.Terms);
-                    otherTerms.Remove(correctAnswer);
-                    Start.Randomize(otherTerms);
-
-                    otherTerms = otherTerms.GetRange(0, Math.Min(numChoice - 1, otherTerms.Count)); // determines the number of choices
-
-                    options.AddRange(otherTerms);
-                    Start.Randomize(options);
-
-                    Console.WriteLine($"{question + 1}. {Library.Definition[picker]}");
-                    Console.WriteLine("\n═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\n");
-                    int selectedOption = 0;
-                    int currentTop = Console.CursorTop;
-
-                    ConsoleKeyInfo keyInfo;
-                    do
-                    {
-                        Console.SetCursorPosition(0, currentTop);
-
-                        for (int i = 0; i < options.Count; i++)
-                        {
-                            string currentOption = $"{Convert.ToChar(97 + i)}. {options[i]}";
-                            if (i == selectedOption)
-                            {
-                                Console.ForegroundColor = ConsoleColor.Black;
-                                Console.BackgroundColor = ConsoleColor.White;
-                            }
-                            else
-                            {
-                                Console.ForegroundColor = ConsoleColor.White;
-                                Console.BackgroundColor = ConsoleColor.Black;
-                            }
-
-                            Console.WriteLine($"{currentOption}");
-                        }
-                        Console.ResetColor();
-
-                        keyInfo = Console.ReadKey(true);
-
-                        if (keyInfo.Key == ConsoleKey.UpArrow)
-                        {
-                            selectedOption--;
-                            if (selectedOption < 0)
-                            {
-                                selectedOption = options.Count - 1;
-                            }
-                        }
-                        else if (keyInfo.Key == ConsoleKey.DownArrow)
-                        {
-                            selectedOption++;
-                            if (selectedOption >= options.Count)
-                            {
-                                selectedOption = 0;
-                            }
-                        }
-                    } while (keyInfo.Key != ConsoleKey.Enter);
-
-                    Console.WriteLine("\n═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\n");
-
-                    int choiceIndex = selectedOption;
-                    string userAnswer = options[choiceIndex];
-
-                    if (userAnswer == correctAnswer)
-                    {
-                        Console.WriteLine("Correct Answer!");
-                        score++;
                     }
-                    else
-                    {
-                        Console.WriteLine($"Incorrect. The correct answer is: {correctAnswer}");
-                    }
-
-                    Console.ReadKey();
+                }
+                else
+                {
+                    Console.Clear();
+                    Print.InCenterLine("Invalid input.");
+                    goto repeat2;
                 }
             }
             else
             {
                 Console.Clear();
-                Console.WriteLine("Invalid input.");
+                Print.InCenterLine("Invalid input.");
                 goto repeat;
             }
 
