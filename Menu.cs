@@ -207,5 +207,17 @@ namespace Console_App_Project_First_Year
 
             }
         }
+        public static void Blink(string text, int blinkCount = 5, int onTime = 500)
+        {
+            Console.CursorVisible = false;
+            for (int i = 0; i < blinkCount; i++)
+            {
+                Console.WriteLine(text);
+                Thread.Sleep(onTime);
+                Console.Clear();
+            }
+            Console.WriteLine(text);
+            Console.CursorVisible = true;
+        }
     }
 }

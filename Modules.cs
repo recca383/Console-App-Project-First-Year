@@ -21,6 +21,8 @@ namespace Console_App_Project_First_Year
             string insertDefinition;
             do
             {
+                Print.InCenterLine("Input A Term");
+                Console.WriteLine("\n\u001b[93m═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\u001b[0m\n");
                 Print.InCenter("Term: ");
                 insertTerm = Console.ReadLine();
 
@@ -36,7 +38,8 @@ namespace Console_App_Project_First_Year
 
             do
             {
-
+                Print.InCenterLine("Input A Definition");
+                Console.WriteLine("\n\u001b[93m═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\u001b[0m\n");
                 Print.InCenter("Definition: ");
                 insertDefinition = Console.ReadLine();
 
@@ -62,9 +65,9 @@ namespace Console_App_Project_First_Year
             Console.Clear();
 
             t = Library.Terms.ToArray();
-
+            Print.InCenterLine("Quiz Time!");
         repeat2:
-            Console.WriteLine("\n═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\n");
+            Console.WriteLine("\n\u001b[95m═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\u001b[0m\n");
             Print.InCenter("Input how many seconds [5 - 60]: ");
             int TimerChoice;
             bool inputTimer = int.TryParse(Console.ReadLine(), out TimerChoice);
@@ -78,14 +81,27 @@ namespace Console_App_Project_First_Year
                 {
 
                     Console.Clear();
+                    Console.CursorVisible = true;
                     Print.InCenterLine($"You have {TimerChoice} seconds to answer the question");
 
+                    bool timeIsUp = false;
                     // Create a timer with the specified duration
                     Timer timer = new Timer(state =>
                     {
-                        Console.WriteLine("Time's up!");
+                        Console.CursorVisible = false;
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Menu.Blink(@"
+                            ████████╗██╗███╗   ███╗███████╗███████╗    ██╗   ██╗██████╗ ██╗
+                            ╚══██╔══╝██║████╗ ████║██╔════╝██╔════╝    ██║   ██║██╔══██╗██║
+                               ██║   ██║██╔████╔██║█████╗  ███████╗    ██║   ██║██████╔╝██║
+                               ██║   ██║██║╚██╔╝██║██╔══╝  ╚════██║    ██║   ██║██╔═══╝ ╚═╝
+                               ██║   ██║██║ ╚═╝ ██║███████╗███████║    ╚██████╔╝██║     ██╗
+                               ╚═╝   ╚═╝╚═╝     ╚═╝╚══════╝╚══════╝     ╚═════╝ ╚═╝     ╚═╝                                                                   
+", 2, 100);
+                        Console.ResetColor();
+                        Print.InCenterLine("Press Enter to Continue");
+                        timeIsUp = true;
 
-                        Console.ReadKey(true);
                     }, null, TimerChoice * 1000, Timeout.Infinite);
 
                     Random R = new Random();
@@ -99,21 +115,43 @@ namespace Console_App_Project_First_Year
                     askedQuestions.Add(picker);
 
                     Console.WriteLine($"\n{question + 1}. {Library.Definition[picker]}");
-                    Console.WriteLine("\n═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\n");
+                    Console.WriteLine("\n\u001b[95m═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\u001b[0m\n");
                     Console.Write("Enter your answer here: ");
                     string UserAnswer = Console.ReadLine().ToUpper();
-
+                   
                     string Answer = Library.Terms[picker];
-                    Console.WriteLine("\n═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\n");
+                    timer.Change(Timeout.Infinite, Timeout.Infinite);
+                    if (timeIsUp)
+                    {
+                        continue; // Skip the rest of the loop iteration for this question
+                    }
+                    Console.WriteLine("\n\u001b[95m═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\u001b[0m\n");
                     if (UserAnswer == Answer.ToUpper())
                     {
-                        Console.WriteLine("Great!");
+                        Console.CursorVisible = false;
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine(@"
+                  _____                             __         ___                                  __
+                 / ___/ ___   ____  ____ ___  ____ / /_       / _ |  ___   ___ _    __ ___   ____  / /
+                / /__  / _ \ / __/ / __// -_)/ __// __/      / __ | / _ \ (_-<| |/|/ // -_) / __/ /_/ 
+                \___/  \___//_/   /_/   \__/ \__/ \__/      /_/ |_|/_//_//___/|__,__/ \__/ /_/   (_)                                                                                                                                                                                                          
+");
+                        Console.ResetColor();
                         points++;
                         Console.ReadKey();
                     }
                     else
                     {
-                        Console.WriteLine($"Incorrect, Better luck next time.\nThe correct answer is: {Answer}");
+                        Console.CursorVisible = false;
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine(@"
+               ____                                        __         ___                                  __
+              /  _/  ___  ____ ___   ____  ____ ___  ____ / /_       / _ |  ___   ___ _    __ ___   ____  / /
+             _/ /   / _ \/ __// _ \ / __/ / __// -_)/ __// __/      / __ | / _ \ (_-<| |/|/ // -_) / __/ /_/ 
+            /___/  /_//_/\__/ \___//_/   /_/   \__/ \__/ \__/      /_/ |_|/_//_//___/|__,__/ \__/ /_/   (_)                                                                                                                                                                                                                                                                                                    
+");
+                        Console.ResetColor();
+                        Print.InCenterLine($"The correct answer is: {Answer}");
                         Console.ReadKey();
                     }
                 }                
@@ -121,14 +159,24 @@ namespace Console_App_Project_First_Year
             else
             {
                 Console.Clear();
+                Print.InCenterLine("Quiz Time!");
                 Print.InCenterLine("Invalid input.");
                 goto repeat2;
             }
             Console.Clear();
             Console.CursorVisible = false;
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine(@"
+ ██████╗ ██╗   ██╗██╗███████╗     ██████╗ ██████╗ ███╗   ███╗██████╗ ██╗     ███████╗████████╗███████╗██████╗ ██╗
+██╔═══██╗██║   ██║██║╚══███╔╝    ██╔════╝██╔═══██╗████╗ ████║██╔══██╗██║     ██╔════╝╚══██╔══╝██╔════╝██╔══██╗██║
+██║   ██║██║   ██║██║  ███╔╝     ██║     ██║   ██║██╔████╔██║██████╔╝██║     █████╗     ██║   █████╗  ██║  ██║██║
+██║▄▄ ██║██║   ██║██║ ███╔╝      ██║     ██║   ██║██║╚██╔╝██║██╔═══╝ ██║     ██╔══╝     ██║   ██╔══╝  ██║  ██║╚═╝
+╚██████╔╝╚██████╔╝██║███████╗    ╚██████╗╚██████╔╝██║ ╚═╝ ██║██║     ███████╗███████╗   ██║   ███████╗██████╔╝██╗
+ ╚══▀▀═╝  ╚═════╝ ╚═╝╚══════╝     ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚═╝     ╚══════╝╚══════╝   ╚═╝   ╚══════╝╚═════╝ ╚═╝                                                                                                                
+");
+            Console.ResetColor();
             Console.WriteLine($"Quiz completed! You scored {points} out of {Library.Definition.Count}.\n");
-            Console.WriteLine("Average: {0} ", Average.Base50(points, Library.Definition.Count));
-            Scoreboard identification = new Scoreboard("Identification", DateTime.Now, points / Library.Definition.Count);
+            Console.WriteLine("Average: {0} ", Average.Base50(points, Library.Definition.Count));            
             Console.WriteLine("Press any key to continue *--->");
             Console.ReadKey(true);
 
@@ -142,21 +190,22 @@ namespace Console_App_Project_First_Year
             Start.InefficientTerms();
             Start.InefficietTermsForMultipleChoice();
             
-            Print.InCenter("Quiz Time!");
+            Print.InCenterLine("Quiz Time!");
             int score = 0;
             t = Library.Terms.ToArray();
             Random random = new Random();
 
         repeat:
-            Console.WriteLine("\n═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\n");
+            Console.WriteLine("\n\u001b[36m═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\u001b[0m\n");
             Print.InCenter("Input the number of Choices you want: ");
             int numChoice;
             bool inputChoice = int.TryParse(Console.ReadLine(), out numChoice);
             Console.Clear();
-            Print.InCenter("Quiz Time!");
+            Print.InCenterLine("Quiz Time!");
         repeat2:
-            Console.WriteLine("\n═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\n");
-            Print.InCenter("Input how many seconds [5 - 60]: ");
+
+            Console.WriteLine("\n\u001b[36m═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\u001b[0m\n");
+            Print.InCenter("Input how many seconds you want to answer each question [5 - 60]: ");
             int TimerChoice;
             bool inputTimer = int.TryParse(Console.ReadLine(), out TimerChoice);
           
@@ -173,12 +222,23 @@ namespace Console_App_Project_First_Year
                         Console.Clear();
                         Print.InCenterLine($"You have {TimerChoice} seconds to answer the question");
 
+                        bool timeIsUp = false;
                         // Create a timer with the specified duration
                         Timer timer = new Timer(state =>
                         {
-                            Console.WriteLine("Time's up!");
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Menu.Blink(@"
+                            ████████╗██╗███╗   ███╗███████╗███████╗    ██╗   ██╗██████╗ ██╗
+                            ╚══██╔══╝██║████╗ ████║██╔════╝██╔════╝    ██║   ██║██╔══██╗██║
+                               ██║   ██║██╔████╔██║█████╗  ███████╗    ██║   ██║██████╔╝██║
+                               ██║   ██║██║╚██╔╝██║██╔══╝  ╚════██║    ██║   ██║██╔═══╝ ╚═╝
+                               ██║   ██║██║ ╚═╝ ██║███████╗███████║    ╚██████╔╝██║     ██╗
+                               ╚═╝   ╚═╝╚═╝     ╚═╝╚══════╝╚══════╝     ╚═════╝ ╚═╝     ╚═╝                                                                   
+", 2, 100);
+                            Console.ResetColor();
+                            Print.InCenterLine("Press Enter to Continue");
+                            timeIsUp = true;
 
-                            Console.ReadKey(true);
                         }, null, TimerChoice * 1000, Timeout.Infinite);
 
                         int picker;
@@ -203,7 +263,7 @@ namespace Console_App_Project_First_Year
                         Start.Randomize(options);
 
                         Console.WriteLine($"\n{question + 1}. {Library.Definition[picker]}");
-                        Console.WriteLine("\n═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\n");
+                        Console.WriteLine("\n\u001b[36m═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\u001b[0m\n");
                         int selectedOption = 0;
                         int currentTop = Console.CursorTop;
 
@@ -250,27 +310,47 @@ namespace Console_App_Project_First_Year
                             }
                         } while (keyInfo.Key != ConsoleKey.Enter);
                         timer.Change(Timeout.Infinite, Timeout.Infinite);
-                        Console.WriteLine("\n═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\n");
-
+                        
+                        if (timeIsUp)
+                        {                      
+                            continue; // Skip the rest of the loop iteration for this question
+                        }
                         int choiceIndex = selectedOption;
                         string userAnswer = options[choiceIndex];
 
+                        Console.WriteLine("\n\u001b[36m═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\u001b[0m\n");
                         if (userAnswer == correctAnswer)
                         {
-                            Console.WriteLine("Correct Answer!");
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine(@"
+                  _____                             __         ___                                  __
+                 / ___/ ___   ____  ____ ___  ____ / /_       / _ |  ___   ___ _    __ ___   ____  / /
+                / /__  / _ \ / __/ / __// -_)/ __// __/      / __ | / _ \ (_-<| |/|/ // -_) / __/ /_/ 
+                \___/  \___//_/   /_/   \__/ \__/ \__/      /_/ |_|/_//_//___/|__,__/ \__/ /_/   (_)                                                                                                                                                                                                          
+");
+                            Console.ResetColor();
                             score++;
                         }
                         else
                         {
-                            Console.WriteLine($"Incorrect. The correct answer is: {correctAnswer}");
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine(@"
+               ____                                        __         ___                                  __
+              /  _/  ___  ____ ___   ____  ____ ___  ____ / /_       / _ |  ___   ___ _    __ ___   ____  / /
+             _/ /   / _ \/ __// _ \ / __/ / __// -_)/ __// __/      / __ | / _ \ (_-<| |/|/ // -_) / __/ /_/ 
+            /___/  /_//_/\__/ \___//_/   /_/   \__/ \__/ \__/      /_/ |_|/_//_//___/|__,__/ \__/ /_/   (_)                                                                                                                                                                                                                                                                                                    
+");
+                            Console.ResetColor();
+                            Print.InCenterLine($"The correct answer is: {correctAnswer}");
                         }
-
+                        
                         Console.ReadKey();
                     }
                 }
                 else
                 {
                     Console.Clear();
+                    Print.InCenterLine("Quiz Time!");
                     Print.InCenterLine("Invalid input.");
                     goto repeat2;
                 }
@@ -278,14 +358,25 @@ namespace Console_App_Project_First_Year
             else
             {
                 Console.Clear();
+                Print.InCenterLine("Quiz Time!");
                 Print.InCenterLine("Invalid input.");
                 goto repeat;
             }
 
             Console.Clear();
-            Console.WriteLine($"Quiz completed! You scored {score} out of {Library.Definition.Count}.\n");
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine(@"
+ ██████╗ ██╗   ██╗██╗███████╗     ██████╗ ██████╗ ███╗   ███╗██████╗ ██╗     ███████╗████████╗███████╗██████╗ ██╗
+██╔═══██╗██║   ██║██║╚══███╔╝    ██╔════╝██╔═══██╗████╗ ████║██╔══██╗██║     ██╔════╝╚══██╔══╝██╔════╝██╔══██╗██║
+██║   ██║██║   ██║██║  ███╔╝     ██║     ██║   ██║██╔████╔██║██████╔╝██║     █████╗     ██║   █████╗  ██║  ██║██║
+██║▄▄ ██║██║   ██║██║ ███╔╝      ██║     ██║   ██║██║╚██╔╝██║██╔═══╝ ██║     ██╔══╝     ██║   ██╔══╝  ██║  ██║╚═╝
+╚██████╔╝╚██████╔╝██║███████╗    ╚██████╗╚██████╔╝██║ ╚═╝ ██║██║     ███████╗███████╗   ██║   ███████╗██████╔╝██╗
+ ╚══▀▀═╝  ╚═════╝ ╚═╝╚══════╝     ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚═╝     ╚══════╝╚══════╝   ╚═╝   ╚══════╝╚═════╝ ╚═╝                                                                                                                
+");
+            Console.ResetColor();
+            Console.WriteLine($"You scored {score} out of {Library.Definition.Count}.\n");
             Console.WriteLine("Average: {0} ", Average.Base50(score, Library.Definition.Count));
-            Console.WriteLine("Press any key to continue *--->");
+            Console.WriteLine("\nPress any key to continue *--->");
             Console.ReadKey(true);
             Menu.ContinueOrExitMultiChoice();
         }
@@ -301,16 +392,12 @@ namespace Console_App_Project_First_Year
             {
                 Console.WriteLine($"{i + 1}. \u001b[93m{Library.Terms[i]}\u001b[0m");
                 Console.WriteLine($"{Library.Definition[i]}");
-                Console.WriteLine("\n═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\n");
+                Console.WriteLine("\n\u001b[93m═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\u001b[0m\n");
             }
            
             Console.ReadKey(true);
             Start.Choice();
 
-        }
-        public static void Scores()
-        {
-            Scoreboard.DisplayScores();
-        }
+        }        
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Media;
 
 namespace Console_App_Project_First_Year
 {
@@ -13,21 +14,24 @@ namespace Console_App_Project_First_Year
 
         public static void Choice ()
         {
-            string[] Options = { "Add Terms", "Identification Quiz", "Multiple Choice Quiz", "View Terms", "Scoreboard", "Exit" };
+            string[] Options = { "Add Terms", "Identification Quiz", "Multiple Choice Quiz", "View Terms", "Exit" };
             int selectedOption = 0;
             ConsoleKeyInfo keyInfo;
 
             do
             {
                 Console.Clear();
-
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
                 Console.WriteLine(@"
-      _ _ _ ____ _    ____ ____ _  _ ____    ____ ____ _    _    ____ _ _ _    ____ ___ _  _ ___  ____ _  _ ___ ____ 
-      | | | |___ |    |    |  | |\/| |___    |___ |___ |    |    |  | | | |    [__   |  |  | |  \ |___ |\ |  |  [__  
-      |_|_| |___ |___ |___ |__| |  | |___    |    |___ |___ |___ |__| |_|_|    ___]  |  |__| |__/ |___ | \|  |  ___] 
-                                                                                                               
-");
 
+                            ██████╗ ███████╗██╗   ██╗    ██╗   ██╗    ██╗  ██╗██╗   ██╗██████╗ 
+                            ██╔══██╗██╔════╝██║   ██║    ██║   ██║    ██║  ██║██║   ██║██╔══██╗
+                            ██████╔╝█████╗  ██║   ██║    ██║   ██║    ███████║██║   ██║██████╔╝
+                            ██╔══██╗██╔══╝  ╚██╗ ██╔╝    ██║   ██║    ██╔══██║██║   ██║██╔══██╗
+                            ██║  ██║███████╗ ╚████╔╝     ╚██████╔╝    ██║  ██║╚██████╔╝██████╔╝
+                            ╚═╝  ╚═╝╚══════╝  ╚═══╝       ╚═════╝     ╚═╝  ╚═╝ ╚═════╝ ╚═════╝                                                                                                                                                                                                                                                  
+");
+                Console.ResetColor();
                 string instruction = "Use arrow keys to navigate. Press Enter to select.";
                 int windowWidth = Console.WindowWidth;
                 int instructionPadding = (windowWidth - instruction.Length) / 2;
@@ -55,7 +59,7 @@ namespace Console_App_Project_First_Year
                 }
                 Console.ResetColor();
 
-                // Console.Beep();
+                //Console.Beep();
 
                 keyInfo = Console.ReadKey(true);
 
@@ -95,9 +99,6 @@ namespace Console_App_Project_First_Year
                     Modules.ViewTerms();
                     break;
                 case 4:
-                    Modules.Scores();
-                    break;
-                case 5:
                     Menu.ChoosePreset();
                     break;
             }
