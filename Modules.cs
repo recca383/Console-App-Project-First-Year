@@ -289,7 +289,7 @@ namespace Console_App_Project_First_Year
                                 Console.WriteLine($"{currentOption}");
                             }
                             Console.ResetColor();
-
+                            Console.CursorVisible = false;
                             keyInfo = Console.ReadKey(true);
 
                             if (keyInfo.Key == ConsoleKey.UpArrow)

@@ -14,6 +14,7 @@ namespace Console_App_Project_First_Year
 
         public static void Choice ()
         {
+            Console.Title = "SPEED REV U";
             string[] Options = { "Add Terms", "Identification Quiz", "Multiple Choice Quiz", "View Terms", "Exit" };
             int selectedOption = 0;
             ConsoleKeyInfo keyInfo;
@@ -206,13 +207,14 @@ namespace Console_App_Project_First_Year
             if (Library.Terms.Count == 0 || Library.Definition.Count == 0 || Library.Terms.Count != Library.Definition.Count)
             {
 
-                    Console.Clear();
-                    Console.WriteLine("Insufficient flashcards or mismatch between terms and definitions.");
-                    Console.WriteLine("Add flashcards first.");
-                    Console.WriteLine("Press any key to go back...");
-                    Console.ReadKey(true);
+                Console.Clear();
+                Print.InCenterLine("Insufficient flashcards or mismatch between terms and definitions.");
+                Print.InCenterLine("Add flashcards first.");
+                Print.InCenterLine("Press any key to go back...");
+                Console.CursorVisible = false;
+                Console.ReadKey(true);
 
-                    Choice();
+                Choice();
 
             }
 
@@ -223,10 +225,11 @@ namespace Console_App_Project_First_Year
             {
 
                 Console.Clear();
-                Console.WriteLine("Insufficient flashcards.");
-                Console.WriteLine("Flashcards must be atleast three.");
-                Console.WriteLine("Add flashcards first.");
-                Console.WriteLine("Press any key to go back...");
+                Print.InCenterLine("Insufficient flashcards.");
+                Print.InCenterLine("Flashcards must be atleast three.");
+                Print.InCenterLine("Add flashcards first.");
+                Print.InCenterLine("Press any key to go back...");
+                Console.CursorVisible = false;
                 Console.ReadKey(true);
 
                 Choice();

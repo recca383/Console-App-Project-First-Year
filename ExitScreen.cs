@@ -10,6 +10,7 @@ namespace Console_App_Project_First_Year
     {
         public static void ThankYou()
         {
+            Console.Title = "SPEED REV U";
 
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Cyan;

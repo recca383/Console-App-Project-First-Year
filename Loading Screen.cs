@@ -11,6 +11,7 @@ namespace Console_App_Project_First_Year
 
         public static void AnimateFrames(string[] frames, int repeatcount = 5, int delay = 100)
         {
+            Console.Title = "SPEED REV U";
             for (int i = 0; i < repeatcount; i++)
             {
                 foreach (string frame in frames)
