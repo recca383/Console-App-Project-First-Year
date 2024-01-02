@@ -62,6 +62,18 @@ namespace Console_App_Project_First_Year
             Terms.Add("Tersyaryang Datos");
             Definition.Add("Tumutukoy sa mga datos na hinalaw sa mga dokumentong naglalarawan sa mga primarya at sekondaryong sanggunian.");
 
+            Terms.Add("Kom. Licuanan");
+            Definition.Add("Ipinaliwanag niya na hindi naman daw naging tahasan ang pagkawala ng Filipino sa kurikulum dahil may inilaan para rito sa ika-11 at 12 baitang ng pag-aaral sa Senior High School.");
+
+            Terms.Add("PCSPE");
+            Definition.Add("Ahensyang binuo sa pamamagitan ng E.O. 202 ni Pangulong Ferdinand E. Marcos upang magsagawa ng pag-aaral sa mabuting sistema ng edukasyon, na wika ng pagtuturo ang siyang nangangailangan ng agarang atensyon sa larangan ng edukasyon. ");
+
+            Terms.Add("Komisyon Sa Wikang Filipino");
+            Definition.Add("Ang ahensya ng gobyerno na binigyan ng kapangyarihan na makapagmungkahi ng mga hakbang, plano, patakaran, at gawain hinggil sa wika");
+
+            Terms.Add("Batas Pambansa 232");
+            Definition.Add("Ang Batas na Nilikha para sa Pagtatag at Pagpapanatili ng Sistemang Integratibo ng Edukasyon.");
+
         }
 
         public static void LoadITEC101Preset()
@@ -94,7 +106,7 @@ namespace Console_App_Project_First_Year
             Definition.Add("Includes a mobile operating system and mobile device building environments.");
 
             Terms.Add("Media Platforms");
-            Definition.Add("Media publishing and analysis platform with technologies such as video transcoding, streaming and recognition.");     
+            Definition.Add("Media publishing and analysis platform with technologies such as video transcoding, streaming and recognition.");
         }
 
         public static void LoadITEC102Preset()
@@ -128,40 +140,99 @@ namespace Console_App_Project_First_Year
 
             Terms.Add("Program Development");
             Definition.Add("Creating application programs is referred to as");
+
+            Terms.Add("Flowcharts");
+            Definition.Add("Illustrate step-by-step logic in a program.");
+
+            Terms.Add("Wireframes");
+            Definition.Add("Visual representation of application design.");
+
+            Terms.Add("Pseudocode");
+            Definition.Add("Expresses steps in English-like statements.");
+
+            Terms.Add("Sequence Control Structure");
+            Definition.Add("Series of statements that follow one another.");
+
+            Terms.Add("Selection Control Structure");
+            Definition.Add("The direction will depend on the results of a certain condition.");
+
+            Terms.Add("Repetition Control Structure");
+            Definition.Add("One or more statements are to be repeated in a loop until a particular condition is reached.");
+
+            Terms.Add("Debugging");
+            Definition.Add("The process of ensuring a program is free of errors, or bugs.");
+
+            Terms.Add("Compiler");
+            Definition.Add("A language translator that converts an entire program into machine language before executing it.");
+
+            Terms.Add("Interpreter");
+            Definition.Add("A language translator that converts program statements line-by-line into machine language, immediately executing each statement.");
+
+            Terms.Add("Assembler");
+            Definition.Add("It converts assembly language statements into machine language.");
         }
 
         public static void LoadPathfitPreset()
         {
-            Terms.Add("EXERCISE");
+            Terms.Add("Exercise");
             Definition.Add("Any physical activity that enhances or maintains physical fitness and overall health.");
 
             Terms.Add("MFIT");
             Definition.Add("Stands for Mode or type of exercise, frequency, and time or in some references it’s also called FITT or frequency, intensity, time, and type.");
 
-            Terms.Add("HEALTH-RELATED COMPONENT OF PHYSICAL FITNESS");
+            Terms.Add("Health-Related Component of Physical Fitness");
             Definition.Add("Refers to aspects of physical fitness that are associated with good health and reduced risk of chronic diseases.");
 
-            Terms.Add("BODY COMPOSITION");
+            Terms.Add("Body Composition");
             Definition.Add("Refers to the proportion of fat, muscle, bone, and other tissues that make up a person's body.");
 
-            Terms.Add("CARDIORESPIRATORY ENDURANCE");
+            Terms.Add("Cardiorespiratory Endurance");
             Definition.Add("It is a crucial component of overall physical fitness and is essential for performing activities that require a continuous supply of oxygen, such as running, swimming, cycling, and other aerobic exercises.");
 
-            Terms.Add("FLEXIBILITY");
+            Terms.Add("Flexibility");
             Definition.Add("The ability of a joint or a series of joints to move through a full range of motion.");
 
-            Terms.Add("MUSCULAR ENDURANCE");
+            Terms.Add("Muscular Endurance");
             Definition.Add("The ability of a muscle or group of muscles to repeatedly exert force over an extended period. Muscular endurance is essential for activities that involve sustained muscle contractions, such as cycling and long-distance running.");
 
-            Terms.Add("MUSCULAR STRENGTH");
+            Terms.Add("Muscular Strength");
             Definition.Add("The amount of force a muscle or group of muscles can exert against a resistance in a single effort.");
 
-            Terms.Add("SPECIFICITY");
+            Terms.Add("Specifity");
             Definition.Add("This principle emphasizes the need for tailoring exercise programs to achieve specific goals or improvements in particular fitness components or skills.");
 
-            Terms.Add("OVERLOAD");
+            Terms.Add("Overload");
             Definition.Add("Involves progressively increasing the intensity, duration, or frequency of exercise to challenge the body and stimulate further improvements in fitness.");
 
+            Terms.Add("Progression");
+            Definition.Add("This principle is closely linked to overload and suggests that exercise intensity, duration, or frequency should be gradually increased over time to prevent plateaus and promote continued improvement.");
+
+            Terms.Add("Individualization");
+            Definition.Add("Acknowledges that each person has unique fitness goals, physical abilities, and limitations.");
+
+            Terms.Add("Rest and Recovery");
+            Definition.Add("Vital for allowing the body to repair and strengthen itself following exercise.");
+
+            Terms.Add("Cool Down");
+            Definition.Add("A set of exercises or activities performed at the end of a workout session to gradually reduce the heart rate and return the body to its pre-exercise state.");
+
+            Terms.Add("Warm up");
+            Definition.Add("A set of exercises or activities performed at the beginning of a workout session to prepare the body for more intense physical activity.");
+
+            Terms.Add("Skills-Related Component of Physical Fitness");
+            Definition.Add("Aspects of physical fitness that contribute to successful performance in sports and other activities. These components include agility, balance, coordination, power, reaction time, and speed.");
+
+            Terms.Add("Agility");
+            Definition.Add("Refers to the ability to move quickly and easily.");
+
+            Terms.Add("Balance");
+            Definition.Add("Refers to the ability to maintain control of the body's position while performing various movements or activities.");
+
+            Terms.Add("Coordination");
+            Definition.Add("The ability to synchronize different parts of the body to perform tasks smoothly and efficiently.");
+
+            Terms.Add("Power");
+            Definition.Add("The ability to exert force quickly, combining both strength and speed.");
         }
     }
 

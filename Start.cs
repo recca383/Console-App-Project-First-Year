@@ -60,7 +60,7 @@ namespace Console_App_Project_First_Year
                 }
                 Console.ResetColor();
 
-                //Console.Beep();
+                Console.Beep();
 
                 keyInfo = Console.ReadKey(true);
 
@@ -152,7 +152,7 @@ namespace Console_App_Project_First_Year
                 }
                 Console.ResetColor();
 
-                // Console.Beep();
+                Console.Beep();
 
                 keyInfo = Console.ReadKey(true);
 
